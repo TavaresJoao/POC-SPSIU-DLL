@@ -2,7 +2,7 @@ import ctypes
 from ctypes import wintypes
 
 lib_msxfs = ctypes.CDLL("../LIB/DLL/msxfs.dll")
-# lib_spsiu = ctypes.CDLL("../LIB/DLL/spsiu.dll")
+lib_spsiu = ctypes.CDLL("C:/Users/fpftech/Documents/XFS_Trainning/xfs/Debug/spsiu.dll")
 
 
 class WFSVERSION(ctypes.Structure):
@@ -77,4 +77,9 @@ def open_siu():
 
     lib_msxfs.WFSClose(hService)
     return hResult
+
+
+if __name__ == '__main__':
+    start_siu();
+    open_siu();
 
