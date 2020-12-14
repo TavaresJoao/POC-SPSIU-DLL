@@ -16,14 +16,19 @@ O sistema deve abrir o dispositivo com sucesso
 
 *** Keywords ***
 Realizar start do dispositivo
-    log     ('sucesso')
+    ${result_siu_start}=    Start Siu
+    Set Global Variable     ${result_siu_start}
 
 Validar start realizado com sucesso
-    log     ('sucesso')
+    log                 ${result_siu_start}
+    Should be True      ${result_siu_start} == 0
+
 
 Realizar abertura do dispositivo
-    log     ('sucesso')
+    ${result_siu_open}=     Open Siu
+    Set Global Variable     ${result_siu_open}
 
 Validar abertura realizada com sucesso
-    log     ('sucesso')
+    log                 ${result_siu_open}
+    Should Be true      ${result_siu_open} == 0
 

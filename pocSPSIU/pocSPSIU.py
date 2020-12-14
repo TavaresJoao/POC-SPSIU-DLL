@@ -42,15 +42,16 @@ def ShwWFSOpenResult(hresult, _hservice, _xfs_version, _sp_version):
     print("\tLowVersion: {}".format(hex(_sp_version.wLowVersion)))
     print("\tVersion: {}".format(hex(_sp_version.wVersion)))
 
-
-if __name__ == "__main__":
+def start_siu():
     xfs_version_start = WFSVERSION()
+    hResult = lib_msxfs.WFSStartUp(wintypes.DWORD(0x00030003), ctypes.byref(xfs_version_start))
+    ShowHRsesultXfsVersion(hResult, xfs_version_start)
+    return hResult
+
+def open_siu():
     xfs_version_open = WFSVERSION()
     sp_version = WFSVERSION()
     hService = ctypes.c_ushort()
-
-    hResult = lib_msxfs.WFSStartUp(wintypes.DWORD(0x00030003), ctypes.byref(xfs_version_start))
-    ShowHRsesultXfsVersion(hResult, xfs_version_start)
 
     sensores = wintypes.LPSTR("Sensores".encode('utf-8'))
     BRXFSTEST = wintypes.LPSTR("BRXFSTEST".encode('utf-8'))
@@ -75,3 +76,5 @@ if __name__ == "__main__":
     ShwWFSOpenResult(hResult, hService, xfs_version_open, sp_version)
 
     lib_msxfs.WFSClose(hService)
+    return hResult
+
