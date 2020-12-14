@@ -2,8 +2,7 @@ import ctypes
 from ctypes import wintypes
 
 lib_msxfs = ctypes.CDLL("../LIB/DLL/msxfs.dll")
-lib_spsiu = ctypes.CDLL("C:/Users/fpftech/Documents/XFS_Trainning/xfs/Debug/spsiu.dll")
-
+lib_spsiu = ctypes.CDLL("../LIB/DLL/spsiu.dll")
 
 class WFSVERSION(ctypes.Structure):
     _fields_ = [
@@ -80,6 +79,6 @@ def open_siu():
 
 
 if __name__ == '__main__':
-    start_siu();
-    open_siu();
+    start_siu()
+    open_siu()
 
